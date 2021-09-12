@@ -1,0 +1,56 @@
+import java.util.HashMap;
+import java.util.Map;
+import java.util.*;
+
+public class Exercise {
+    
+     public static void main(String []args){
+        
+        findFirstRepeatedWords("Hello: hello my  fellow candidate my.");
+       
+       
+     }
+
+  public static String findFirstRepeatedWords(String paragraph) {
+        // TODO - Your code goes here, within this method.
+        //Missing: Should have removed the punctuation
+        ////////////////////////////
+       try {
+           
+            String modified=paragraph.replaceAll("\\p{Punct}", "");
+            /////////////////////////////////////
+          
+            String[] words = modified.split(" ");
+             
+            // adds all words into a map
+            // we also check whether the word is already in map!
+            Map<String,String> wordMap = new HashMap<String,String>();
+            
+            
+            for(int i=0;i<words.length;i++) {
+                
+                String word = words[i].toUpperCase(); // for case insensitive comparison
+                
+                if(wordMap.get(word)!=null) {
+        
+                    // we found a duplicated word!
+                    System.out.println("Duplicated/Repeated word:"+word.toLowerCase());
+                    return word;
+                    
+                }else {
+                    
+                    wordMap.put(word, word);
+                }
+            }
+           
+       } catch(Exception e){
+           
+           System.out.println(e);
+       }
+        System.out.println("No duplicated words found in the string!");
+        return null; 
+    }   
+}
+
+
+
